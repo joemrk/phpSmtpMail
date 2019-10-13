@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SMTP Mail Sender PHP</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./style.min.css">
+</head>
+
+<body>
+    <div class="contaiter">
+        <form class="xx_form">
+            <div class="mess"></div>
+            <input type="text" name="firstName" placeholder="First Name">
+            <input type="text" name="lastName" placeholder="Last Name">
+            <input type="email" name="email" id="" placeholder="Email">
+            <input type="tel" name="phone" placeholder="Phone Number">
+            <textarea name="notes"></textarea>
+            <input class="form-submit" type="submit" value="Send">
+        </form>
+    </div>
+</body>
+<script>
+    $('.xx_form').on('submit', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '/mail.php',
+            method: 'POST',
+            data: {
+                firstName: $('input[name=firstName]').val(),
+                lastName: $('input[name=lastName]').val(),
+                email: $('input[name=email]').val(),
+                notes: $('textarea[name=notes]').val(),
+                phone: $('input[name=phone]').val()
+            },
+            success: function() {
+                window.location = '/index.html'
+            }
+        })
+    })
+</script>
+
+</html>
